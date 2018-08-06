@@ -8,24 +8,46 @@ Base.metadata.create_all(engine)
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-def add_article():
-	pass
-
+def add_article(name, topic, rating):
+	wikipedia_obj = Knowledge(
+		name = name,
+		topic = topic,
+		rating = rating)
+	session.add(wikipedia_obj)
+	session.commit()
+	
 def query_all_articles():
-	pass
+	knowledge = session.query(Knowledge).all()
+	return knowledge
 
-def query_article_by_topic():
-	pass
+def query_article_by_topic(x):
+	knowledge = session.query(Knowledge).filter_by(topic = x).all()
+	return knowledge
 
-def delete_article_by_topic():
-	pass
+def delete_article_by_topic(x):
+	session.query(Knowledge).filter_by(topic = x).delete()
+	session.commit()
 
 def delete_all_articles():
-	pass
+	session.query(Knowledge).delete()
+	session.commit()
 
 def edit_article_rating():
 	pass
 
-basketball = Knowledge(name="Basketball", topic="Sport", article_id=1, rating=8)
-fencing = Knowledge(name="Fencing", topic="Combat", article_id=2, rating=6)
-toad = Knowledge(name="Toad", topic="Amphibians", article_id=3, rating=10)
+add_article("Basketball", "Sport", 8)
+add_article("Toad", "Amphibians", 10)
+add_article("Fencing", "Sport", 7)
+add_article("Philosophy","Existence",8)
+add_article("Frog", "Amphibians", 9)
+add_article("King Louis XIV", "Monarchs", 4)
+
+"""
+TESTING
+"""
+
+delete_all_articles()
+# delete_article_by_topic("Amphibians")
+# print(query_article_by_topic("Sport")
+print(query_all_articles())
+# print(toad)
