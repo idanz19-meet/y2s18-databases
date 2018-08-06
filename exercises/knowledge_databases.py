@@ -25,3 +25,7 @@ def delete_all_articles():
 
 def edit_article_rating():
 	pass
+
+basketball = Knowledge(name="Basketball", topic="Sport", article_id=1, rating=8)
+fencing = Knowledge(name="Fencing", topic="Combat", article_id=2, rating=6)
+toad = Knowledge(name="Toad", topic="Amphibians", article_id=3, rating=10)

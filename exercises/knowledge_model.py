@@ -1,3 +1,4 @@
+
 from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, sessionmaker
@@ -13,5 +14,17 @@ class Knowledge(Base):
 	# The third column will be a string representing the 
 	# topic of the article. The last column will be
 	# an integer, representing your rating of the article.
+	__tablename__ = "wikipedia"
+	article_id = Column(Integer, primary_key=True)
+	name = Column(String)
+	topic = Column(String)
+	rating = Column(Integer)
 
-	pass
+	def __repr__(self):
+		return ("If you want to learn about {}\n" "you should read the wikipedia article called {}\n"
+		"we give this article a rating of {}\n out of 10").format(
+					self.topic,
+					self.name,
+					self.rating)
+
+basketball = Knowledge(name="Basketball", topic="Sport", article_id=1, rating="8")
