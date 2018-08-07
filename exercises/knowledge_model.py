@@ -27,4 +27,3 @@ class Knowledge(Base):
 					self.name,
 					self.rating)
 
-basketball = Knowledge(name="Basketball", topic="Sport", article_id=1, rating="8")
